@@ -23,7 +23,7 @@
       dest: /var/www/html
 
   - name: restart nginx
-    tags: always
+    tags: never
     sysvinit:
       name: nginx
       state: restarted
@@ -32,5 +32,9 @@
   - name: install vim in playbook & in inventory nano & tree in command line
     tags: vars
     package:
-      name: '{{package_name}}'
-      state: '{{package_version}}'
+      name: "{{item.package_name}}"
+      state: "{{item.package_state}}"
+    loop:
+      - { package_name: "vim", package_state: "present"}
+      - { package_name: "mariadb-server", package_state: "latest"}
+      - { package_name: "curl", package_state: "absent"}
