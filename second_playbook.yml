@@ -1,0 +1,24 @@
+---
+- name: update cache and install nginx
+  hosts: all
+  gather_facts: false
+  tasks:
+  - name: update cache
+    apt:
+      update_cache: yes
+
+  - name: install nginx
+    package:
+      name: nginx
+      state: present
+  
+  - name: copy index.html
+    copy:
+      src: index.html
+      dest: /var/www/html
+
+  - name: restart nginx
+    sysvinit:
+      name: nginx
+      state: restarted
+      enabled: yes
