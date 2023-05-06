@@ -47,6 +47,21 @@
       name: apache2
       state: present
     when: ansible_facts['distribution'] == "Ubuntu"
+    register: my_result
+
+  - name: restart apache2
+    tags: restart_apache2
+    sysvinit:
+      name: apache2
+      state: restarted
+      enabled: yes
+    when: '{{my_result.changed}}== true'
+
+  - name: print my_result register
+    tags: register
+    debug:
+      # msg: '{{my_result.status.restarted.changed}}'
+      var: my_result
 
   - name: setup httpd
     tags: httpd
