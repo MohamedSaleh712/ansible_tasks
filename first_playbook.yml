@@ -1,0 +1,8 @@
+---
+- name: stop gather facts and update cache
+  hosts: all
+  gather_facts: false
+  tasks:
+  - name: update cache
+    apt:
+      update_cache: yes
