@@ -2,8 +2,8 @@
 - name: install apache2
   package:
     name: '{{package_name}}'
-    state: latest
+    state: present
   register: install_result
   notify:
-    - copy_from_rules
+    - copy_by_template
     - restart_apache2

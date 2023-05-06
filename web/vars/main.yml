@@ -2,3 +2,10 @@
 # vars file for web
 package_name: apache2
 httpd_path: /var/www/html
+full_name: Mohamed Saleh
+job: DevOps Engineer
+# skills: [Docker, K8S, Ansible, AWS, python, Terraform]
+file_list:
+  - file1 
+  - file2
+  - file3

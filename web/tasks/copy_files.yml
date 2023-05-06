@@ -1,0 +1,6 @@
+---
+- name: copy files to host
+  copy:
+    src: '{{item}}'
+    dest: /home/asible
+  loop: "{{file_list}}"

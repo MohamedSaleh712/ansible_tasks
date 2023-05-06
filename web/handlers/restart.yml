@@ -1,6 +1,0 @@
----
-- name: restart_apache2
-  sysvinit:
-    name: '{{package_name}}'
-    state: restarted
-    enabled: yes
