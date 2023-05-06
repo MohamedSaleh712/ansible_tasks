@@ -1,0 +1,10 @@
+---
+- name: copy from rules
+  copy:
+    src: index.html
+    dest: "{{httpd_path}}"
+  when: '{{install_result.changed}}== true'
+  register: copy_result
+
+- debug:
+    var: copy_result

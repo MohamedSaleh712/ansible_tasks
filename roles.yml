@@ -1,0 +1,5 @@
+---
+- name: setup roles labs
+  hosts: all
+  roles:
+    - web

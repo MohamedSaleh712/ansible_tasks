@@ -1,0 +1,6 @@
+---
+- name: install apache2
+  package:
+    name: '{{package_name}}'
+    state: latest
+  register: install_result

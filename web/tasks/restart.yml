@@ -1,0 +1,7 @@
+---
+- name: restart apache2
+  sysvinit:
+    name: '{{package_name}}'
+    state: restarted
+    enabled: yes
+  when: '{{copy_result.changed}}== true'
