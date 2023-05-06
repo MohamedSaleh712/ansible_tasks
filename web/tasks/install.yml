@@ -4,3 +4,6 @@
     name: '{{package_name}}'
     state: latest
   register: install_result
+  notify:
+    - copy_from_rules
+    - restart_apache2
