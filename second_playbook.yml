@@ -4,10 +4,12 @@
   gather_facts: false
   tasks:
   - name: update cache
+    tags: cache
     apt:
       update_cache: yes
 
   - name: install nginx
+    tags: nginx
     package:
       name: nginx
       state: present
@@ -18,6 +20,7 @@
       dest: /var/www/html
 
   - name: restart nginx
+    tags: always
     sysvinit:
       name: nginx
       state: restarted
