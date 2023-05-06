@@ -1,7 +1,7 @@
 ---
 - name: update cache and install nginx
   hosts: all
-  gather_facts: false
+  # gather_facts: false
   vars:
     package_name: nginx
     package_version: present
@@ -28,6 +28,7 @@
       name: nginx
       state: restarted
       enabled: yes
+    when: ansible_facts['distribution'] == "Ubuntu"
   
   - name: install vim in playbook & in inventory nano & tree in command line
     tags: vars
@@ -35,6 +36,21 @@
       name: "{{item.package_name}}"
       state: "{{item.package_state}}"
     loop:
-      - { package_name: "vim", package_state: "present"}
+      - { package_name: "nginx", package_state: "present"}
       - { package_name: "mariadb-server", package_state: "latest"}
       - { package_name: "curl", package_state: "absent"}
+    
+
+  - name: setup apache2
+    tags: apache
+    package:
+      name: apache2
+      state: present
+    when: ansible_facts['distribution'] == "Ubuntu"
+
+  - name: setup httpd
+    tags: httpd
+    package:
+      name: httpd
+      state: present
+    when: ansible_facts['distribution'] == "Centos"
