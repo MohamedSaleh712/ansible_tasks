@@ -2,6 +2,9 @@
 - name: update cache and install nginx
   hosts: all
   gather_facts: false
+  vars:
+    package_name: nginx
+    package_version: present
   tasks:
   - name: update cache
     tags: cache
@@ -25,3 +28,9 @@
       name: nginx
       state: restarted
       enabled: yes
+  
+  - name: install vim in playbook & in inventory nano & tree in command line
+    tags: vars
+    package:
+      name: '{{package_name}}'
+      state: '{{package_version}}'
